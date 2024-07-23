@@ -2,7 +2,7 @@
 
 ## Preliminary Data Exploration
 
-Preliminary data exploration queries can be found in the `analysis` folder. These queries are used to understand the structure and quality of the raw data before transforming it. Key findings from the exploration include:
+Preliminary data exploration queries can be found in the `analysis` folder. These queries are used to understand the structure and quality of the data analysis was done on the mart layer to asses it's quality, however this should have been done on the raw layer too. Key findings from the exploration include:
 
 - There is a perfect 1:1 match between raw tables.
 - IDs are not null and unique.
