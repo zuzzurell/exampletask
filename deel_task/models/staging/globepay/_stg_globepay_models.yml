@@ -1,0 +1,64 @@
+version: 2
+
+models:
+  - name: stg_globepay__acceptance
+    description: "Model to process and document the Globepay acceptance report data for Deel clients."
+    columns:
+      - name: globepay_acceptance_amount
+        description: "The transaction amount processed by Globepay."
+        data_type: number
+      - name: globepay_country
+        description: "The country where the transaction took place."
+        data_type: varchar
+      - name: globepay_currency
+        description: "The currency used in the transaction."
+        data_type: varchar
+      - name: is_globepay_cvv_provided
+        description: "Indicates whether the CVV was provided for the transaction."
+        data_type: boolean
+      - name: globepay_acceptance_at
+        description: "The timestamp when the transaction was accepted by Globepay."
+        data_type: timestamp
+      - name: globepay_acceptance_id
+        description: "The external reference ID for the accepted transaction."
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('stg_globepay__chargeback')
+              field: globepay_acceptance_id
+        data_type: varchar
+      - name: globepay_acceptance_rates
+        description: "The exchange rates applicable to the transaction, parsed as JSON."
+        data_type: json
+      - name: globepay_acceptance_event_id
+        description: "The reference ID for the acceptance event."
+        data_type: varchar
+      - name: globepay_acceptance_source
+        description: "The source of the transaction, e.g., web or mobile."
+        data_type: varchar
+      - name: globepay_acceptance_state
+        description: "The state of the transaction, indicating its current status in the process."
+        data_type: varchar
+      - name: globepay_acceptance_status
+        description: "The status of the transaction, such as approved, declined, or pending."
+        data_type: varchar
+
+  - name: stg_globepay__chargeback
+    description: "Model to process and document the Globepay chargeback data for Deel clients."
+    columns:
+      - name: globepay_acceptance_id
+        description: "The external reference ID for the accepted transaction, linking to the acceptance report."
+        data_type: varchar
+        tests:
+          - unique
+          - not_null         
+      - name: globepay_chargeback_source
+        description: "The source of the chargeback, e.g., web or mobile."
+        data_type: varchar
+      - name: globepay_chargeback_status
+        description: "Indicates the status of the chargeback."
+        data_type: boolean
+      - name: is_globepay_chargeback
+        description: "Indicates whether the transaction is a chargeback."
+        data_type: boolean
