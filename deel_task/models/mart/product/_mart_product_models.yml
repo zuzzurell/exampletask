@@ -1,0 +1,64 @@
+version: 2
+
+models:
+  - name: fct_globepay
+    description:  "A fact table that joins the Globepay acceptance and chargeback data based on acceptance ID. It includes transaction details, calculates the rate of each transaction in USD, and provides a comprehensive view of acceptance transactions and their chargeback statuses."
+    columns:
+      - name: globepay_acceptance_id
+        description: "The unique identifier for the Globepay acceptance transaction. This ID is used to join with chargeback data."
+        data_type: varchar
+        tests:
+          - unique
+          - not_null
+      - name: globepay_acceptance_event_id
+        description: "The event ID associated with the Globepay acceptance transaction."
+        data_type: varchar
+      - name: globepay_acceptance_amount
+        description: "The amount of the Globepay acceptance transaction in the original currency."
+        data_type: number
+      - name: globepay_acceptance_at
+        description: "The timestamp when the Globepay acceptance transaction occurred."
+        data_type: timestamp
+      - name: globepay_acceptance_state
+        description: "The state of the Globepay acceptance transaction, indicating its current status in the process."
+        data_type: varchar
+      - name: country_rate_to_usd
+        description: "The conversion rate from the transaction currency to USD. Calculated based on the rate provided in the Globepay acceptance rates JSON."
+        data_type: number
+      - name: globepay_acceptance_amount_usd
+        description: "The amount of the Globepay acceptance transaction converted to USD using the country_rate_to_usd."
+        data_type: number
+
+  - name: dim_globepay
+    description: "A model that joins the Globepay acceptance and chargeback data based on acceptance ID to provide a comprehensive view of transactions and their chargeback statuses."
+    columns:
+      - name: globepay_acceptance_id
+        description: "The unique identifier for the Globepay acceptance transaction. This ID is used to join with chargeback data."
+        data_type: varchar
+        tests:
+          - unique
+          - not_null
+      - name: globepay_chargeback_source
+        description: "The source of the chargeback, e.g., web or mobile. This information is sourced from the chargeback data."
+        data_type: varchar
+      - name: globepay_country
+        description: "The country where the Globepay acceptance transaction took place."
+        data_type: varchar
+      - name: globepay_currency
+        description: "The currency used in the Globepay acceptance transaction."
+        data_type: varchar
+      - name: globepay_acceptance_source
+        description: "The source of the Globepay acceptance transaction, e.g., web or mobile."
+        data_type: varchar
+      - name: is_globepay_chargeback
+        description: "Indicates whether the Globepay acceptance transaction has been marked as a chargeback."
+        data_type: boolean
+      - name: is_globepay_cvv_provided
+        description: "Indicates whether the CVV was provided for the Globepay acceptance transaction."
+        data_type: boolean
+      - name: globepay_acceptance_status
+        description: "The status of the Globepay acceptance transaction, such as approved, declined, or pending."
+        data_type: varchar
+      - name: globepay_chargeback_status
+        description: "Indicates the status of the chargeback, such as initiated or completed."
+        data_type: boolean

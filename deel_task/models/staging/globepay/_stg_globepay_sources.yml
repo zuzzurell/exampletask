@@ -1,0 +1,8 @@
+version: 2
+sources:
+  - name: RAW_GLOBEPAY
+    database: DEEL_HOME_TEST
+    schema: RAW
+    tables:
+    - name: RAW_GLOBEPAY_ACCEPTANCE_REPORT
+    - name: RAW_GLOBEPAY_CHARGEBACK_REPORT
