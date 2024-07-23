@@ -47,4 +47,4 @@ The Reporting/Semantic Layer is the final step where data is prepared for consum
 
 The data flows from the Raw Layer through the Staging and Mart Layers to the Reporting/Semantic Layer, with each layer performing specific transformations and aggregations. The final data is then consumed by BI tools for analysis and reporting.
 
-![Model Architecture Overview](../img/flow.png)
+![Model Architecture Overview](https://github.com/zuzzurell/deel_home_task/blob/main/deel_task/img/flow.png)
