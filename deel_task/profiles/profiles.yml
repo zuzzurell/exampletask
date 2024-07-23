@@ -5,7 +5,7 @@ deel_task:
       type: snowflake
       account: "sb10459.eu-west-3.aws"  
       user: DEELTESTACCOUNT
-      password: "{{ env_var('DBT_PASSWORD_DEEL') }}"  # Ensure this is stored securely
+      password: "{{ env_var('DBT_PASSWORD_DEEL') }}"
       role: ACCOUNTADMIN
       database: DEEL_HOME_TEST
       warehouse: COMPUTE_WH

@@ -1,6 +1,25 @@
 version: 2
 
 models:
+  - name: rpt_globepay__analysis
+    description: >
+        This model performs several analyses on Globepay transaction data. 
+        It calculates the daily acceptance rate, identifies countries where declined transactions exceed $25M, 
+        and lists transactions missing chargeback data. The output combines these analyses to provide insights 
+        into transaction acceptance rates, high-value declined transactions, and missing chargebacks.
+      columns:
+        - name: GLOBEPAY_ACCEPTANCE_DATE
+          description: "The date when the transaction was accepted, truncated to the day."
+          data_type: date
+        - name: daily_acceptance_rate
+          description: "The rate of accepted transactions relative to the total number of transactions for the day."
+          data_type: float
+        - name: declined_acceptance_above_25M_country
+          description: "An array of countries where the total amount of declined transactions exceeds $25M."
+          data_type: array
+        - name: daily_no_chaargeback_transaction
+          description: "An array of transaction IDs that do not have chargeback data for the given day."
+          data_type: array
   - name: rpt_globepay__daily_acceptance_rate
     description: "This model calculates the daily acceptance rate of transactions over time. It aggregates the Globepay acceptance data to provide the acceptance rate as a percentage of total transactions for each day."
     columns:
