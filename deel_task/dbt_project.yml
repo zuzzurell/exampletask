@@ -44,3 +44,4 @@ models:
       materialized: table
       product:
         schema: REPORTING
+

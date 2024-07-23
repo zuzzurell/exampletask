@@ -1,0 +1,23 @@
+with laod_acceptance as (
+    SELECT * FROM DEEL_HOME_TEST.RAW_STAGING.stg_globepay__acceptance
+),
+laod_chargeback as (
+    SELECT * FROM DEEL_HOME_TEST.RAW_STAGING.stg_globepay__chargeback
+),
+
+--GRAIN is the event
+join_acceptance_chargeback as (
+SELECT 
+    acceptance.globepay_acceptance_id,
+    acceptance.globepay_acceptance_event_id,
+    acceptance.globepay_acceptance_amount,
+    acceptance.globepay_acceptance_at,
+    acceptance.globepay_acceptance_status,
+    chargeback.globepay_chargeback_status,
+    chargeback.is_globepay_chargeback,
+    acceptance.is_globepay_cvv_provided
+FROM laod_acceptance  acceptance 
+LEFT JOIN laod_chargeback chargeback
+ON acceptance.globepay_acceptance_id = chargeback.globepay_acceptance_id
+)
+SELECT * FROM join_acceptance_chargeback
