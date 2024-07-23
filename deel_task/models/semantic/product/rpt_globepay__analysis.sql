@@ -38,8 +38,9 @@ country_above_cte as (
 missing_transaction_cte as (
 SELECT
 DATE_TRUNC(day,GLOBEPAY_ACCEPTANCE_AT)::date GLOBEPAY_ACCEPTANCE_DATE,
-ARRAY_UNIQUE_AGG(IFF(not is_globepay_chargeback, globepay_acceptance_id, null)) as daily_no_chaargeback_transaction,
+ARRAY_UNIQUE_AGG(globepay_acceptance_id) as daily_no_chaargeback_transaction,
 FROM join_tables
+where not is_globepay_chargeback  
 GROUP BY ALL)
 
 SELECT
