@@ -9,7 +9,7 @@ FROM {{ ref('fct_globepay') }};
 --Summary on date  min and max
 SELECT 
     MIN(globepay_acceptance_at) AS min_globepay_acceptance_at,
-    MAX(globepay_acceptance_at) AS max_globepay_acceptance_at,
+    MAX(globepay_acceptance_at) AS max_globepay_acceptance_at
 FROM {{ ref('fct_globepay') }};
 
 -- Monthly transaction count in fact table
