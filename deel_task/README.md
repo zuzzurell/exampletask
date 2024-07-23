@@ -34,6 +34,8 @@ The model architecture is structured into four distinct layers:
 ## Lineage Graphs
 
 Lineage graphs can be checked using the following command:
+![Lineage Graph](https://github.com/zuzzurell/deel_home_task/blob/main/deel_task/img/lineage.png)
+
 
 ```bash
 dbt docs generate
