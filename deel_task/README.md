@@ -69,4 +69,28 @@ dbt docs serve
 
 This command generates comprehensive documentation for all models, making it easier to understand the data transformations and structures.
 
+# Final considerations about the models:
+
+## Acceptance Rate Over Time
+
+The acceptance rate is defined based on the State column, which indicates the binary state of the transaction (e.g., Accepted or Declined). The time grain for this metric is not explicitly specified, but for this interpretation, we assume the card acceptance rate is on a daily basis.
+
+## Countries with Declined Transactions Over $25M
+
+Identify the countries where the amount of declined transactions exceeds $25 million.
+This seems straigforward however adding as a coulumn in the model about acceptance rate seems not related - might have been more useful the countries with XXX milion of declined transaction on that day.
+
+Transactions Missing Chargeback Data
+
+To understand what constitutes "missing data":
+
+It could mean events in the acceptance table that do not have a match in the chargeback table (though this doesn't seem to be the case since a relationship test is in place at the staging layer).
+Alternatively, it could refer to transactions in the chargeback table where no chargeback-related data is generated because the transaction was not charged back.
+I have followed the second interpretation and included all transactions on a daily basis that have no chargeback data. 
+
+General Recommendations
+Additional alignment with stakeholders and analysts is essential to support the reporting model effectively.
+Avoid combining different use cases with significantly different grains into a single model unless the overarching reporting question necessitates it.
+
+
 
