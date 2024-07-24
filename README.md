@@ -12,7 +12,8 @@ If needed, reach out for access to the repository:
 Clone the repository to your local machine using the following command:
 
 ```bash
-git clone https://github.com/zuzzurell/deel_home_task.git
+gh auth login -h github.com
+gh repo clone zuzzurell/deel_home_task
 ```
 
 ##  Setup Instructions
