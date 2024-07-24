@@ -16,20 +16,17 @@ git clone https://github.com/zuzzurell/deel_home_task.git
 ```
 
 ##  Setup Instructions
-1. Add the Snowflake password to your environment variables by updating your .zshrc file. Open .zshrc.
+1. Add the Snowflake password to your environment variables by updating your .zshrc file.
 
 The Snowflake password needs to be provided (will be attached in the mail with the test)
 
 In your favorite text editor and add the following line:
 
 ```bash
-export DBT_PASSWORD_DEEL=your_snowflake_password_here
+export DBT_PASSWORD_DEEL= snowflake_password_here
 ```
-Replace your_snowflake_password_here with your actual Snowflake password. Save the file and then reload your .zshrc with:
+Replace snowflake_password_here with your actual Snowflake password.
 
-```bash
-source ~/.zshrc
-```
 2. Setting Up the Environment
 
 If you do not have a dedicated environment for this project, you can create one using Conda and install the necessary packages. Follow these steps:
@@ -37,6 +34,7 @@ If you do not have a dedicated environment for this project, you can create one 
 Install Conda (if you don't already have it):
 
 Download and install Conda from the official website.
+
 Create a Virtual Environment:
 
 ```bash
@@ -54,6 +52,7 @@ pip install dbt-snowflake
 ```
 
 3. Build the dbt Project
+Make sure to be in the right directory deel_home_task/deel_task/
 Run the following command to build the dbt project and execute all models:
 
 ```bash
@@ -75,6 +74,8 @@ dbt docs serve
 
 After running this command, open your web browser and go to the URL provided in the terminal output to view the documentation.
 
-Additional Information
+Additional Information:
+
 Models: The project contains models to answer specific business questions related to Globepay transaction data.
+
 Documentation: Each model and column is documented to provide clarity on its purpose and details.
